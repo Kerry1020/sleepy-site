@@ -4,10 +4,10 @@ import { JSDOM } from 'jsdom';
 import { site } from '../src/i18n/ui';
 import release from '../src/data/release.json';
 import faq from '../src/data/faq.json';
+import reviews from '../src/data/content-reviews.json';
 
-// sitemap lastmod 精确化(SEO 极致批次):爬虫按 lastmod 决定重访优先级,
-// 缺 lastmod = 全站同等刷新频率;数据管线日期就是真实更新信号——
-// 主页/台账/下载 = release.date(发版驱动),FAQ = faq.json updatedAt(内容管线驱动)。
+// Release-driven pages and editorial reviews have separate timestamps.
+// A newer published release must not make this test require yesterday’s review date.
 // 消费 dist/client 产物 —— 先跑 npm run build。
 
 const xml = (() => {
@@ -27,13 +27,16 @@ const entry = (pathname: string) => {
   return url.querySelector('lastmod')?.textContent ?? null;
 };
 
-const reviewDay = '2026-11-16';
+const reviewed = reviews as Record<string, string>;
+const releaseDriven = new Set(['/', '/download/']);
 
 describe('sitemap reflects release dates and genuine content reviews', () => {
   for (const base of ['/', '/download/', '/faq/', '/guides/', '/guides/wakeup-migration/', '/guides/backup-restore/', '/privacy/']) {
     for (const path of [base, '/en' + base]) {
       it(`${path} includes the current editorial review date`, () => {
-        expect(entry(path)).toMatch(new RegExp(`^${reviewDay}`));
+        const dates = [reviewed[base], base === '/faq/' ? faq.updatedAt : releaseDriven.has(base) ? release.date : undefined].filter((date): date is string => Boolean(date));
+        const expected = Math.max(...dates.map(date => new Date(date).getTime()));
+        expect(entry(path)).toBe(new Date(expected).toISOString());
       });
     }
   }

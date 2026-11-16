@@ -53,6 +53,7 @@ jobs:
           npm run check
           npm run build
           npm test
+          node scripts/audit-seo.mjs
 
       - name: Prevent an older build from replacing a newer release
         if: github.event_name != 'pull_request'
