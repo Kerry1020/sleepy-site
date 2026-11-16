@@ -21,7 +21,8 @@ const downloadHref = Astro.props.lang === 'en' ? '/en/download/' : '/download/';
   <Blob variant={0} />
   <div class="site-col hero__grid">
     <div class="hero__copy">
-      <h1 class="hero__slogan" id="hero-title">{t.slogan}</h1>
+      <p class="t-label-large hero__brand">{t.slogan}</p>
+      <h1 class="hero__slogan" id="hero-title">{Astro.props.lang === 'en' ? 'Sleepy university timetable' : <Fragment>Sleepy 轻课表{' '}<span class="hero__descriptor">大学生课程表</span></Fragment>}</h1>
       <p class="t-body-large hero__sub">{t.sub}</p>
       <div class="hero__ctas">
         <a class="site-button site-button--filled hero__cta-xl" href={downloadHref}>{t.ctaDownload}</a>
@@ -103,6 +104,7 @@ const downloadHref = Astro.props.lang === 'en' ? '/en/download/' : '/download/';
     margin-block-end: calc(var(--site-unit) * 4);
     animation: rise var(--md-sys-motion-duration-long2) var(--md-sys-motion-easing-emphasize-decelerate) both;
   }
+  .hero__descriptor { display: block; }
   .hero__sub {
     max-width: 46ch;
     color: var(--md-sys-color-on-surface-variant);

@@ -39,13 +39,13 @@ describe('released product machine surface', () => {
     for (const value of [product.tag, product.commit, product.publishedAt, product.reviewedAt, product.sourceUrl]) expect(txt).toContain(value);
     expect(txt).not.toMatch(/SOP|Co-Authored-By|lingion@hrbeu|sleepy\.is-my\.app.*password/i);
   });
-  it('machine documents preserve distinct iOS channels and the mainland review status', () => {
+  it('machine documents preserve independent iOS channels and scope store availability', () => {
     for (const path of ['../public/llms.txt', '../dist/client/llms.txt']) {
       const txt = read(path);
       expect(txt).toContain(iosAppStoreUrl);
       expect(txt).toContain(iosTestFlightUrl);
-      expect(txt).toContain('outside mainland China');
-      expect(txt).toContain('still under review');
+      expect(txt).toContain('Availability depends on the selected store region');
+      expect(txt).toContain('check whether TestFlight has open places');
     }
     const faq = JSON.parse(read('../dist/client/faq.json'));
     expect(faq.updatedAt).toBe('2026-11-10');

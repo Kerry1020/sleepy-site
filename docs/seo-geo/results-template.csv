@@ -1,0 +1,1 @@
+run_id,prompt_id,repetition,measured_at_utc,provider,surface,model_label,region,language,signed_in,fresh_conversation,search_enabled,search_observed,sample_status,skip_reason,brand_mentioned,recommended,official_cited,ordered_position,official_citation_urls,independent_citation_urls,claim_accuracy,claim_notes,response_artifact

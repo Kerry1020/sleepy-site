@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../PageHeader.astro';
+import { guides, guidePath, guideIndexPath, type GuideLang } from '../../data/guides';
+interface Props { lang: GuideLang }
+const { lang } = Astro.props;
+const title = lang === 'zh' ? 'Sleepy 使用指南' : 'Sleepy user guides';
+const description = lang === 'zh'
+  ? '按步骤完成课表导入、迁移、备份和恢复。指南注明适用版本及核验日期，并提供对应的发布源码依据。'
+  : 'Step-by-step help for timetable import, migration, backup and restore, with applicable versions, review dates and release-source references.';
+---
+<Base lang={lang} title={`${title} · Sleepy`} description={description} path={guideIndexPath(lang)} mirror={guideIndexPath(lang === 'zh' ? 'en' : 'zh')}>
+  <div class="site-col document-page">
+    <PageHeader title={title} description={description} />
+    <div class="document-body">
+      {guides.map((guide) => <section aria-labelledby={guide.slug}>
+        <h2 id={guide.slug}><a href={guidePath(guide.slug, lang)}>{guide.copy[lang].title}</a></h2>
+        <p>{guide.copy[lang].description}</p>
+        <p class="guide-index-meta">{guide.sourceVersion} · {lang === 'zh' ? '核验日期：' : 'Reviewed: '}<time datetime={guide.reviewDate}>{guide.reviewDate}</time></p>
+      </section>)}
+      <p><a href={lang === 'zh' ? '/faq/' : '/en/faq/'}>{lang === 'zh' ? '更多常见问题' : 'More frequently asked questions'}</a></p>
+    </div>
+  </div>
+</Base>
+<style>
+  .guide-index-meta { color: var(--md-sys-color-on-surface-variant); font: var(--md-sys-typescale-label-large); }
+</style>

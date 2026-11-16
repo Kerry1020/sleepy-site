@@ -27,13 +27,13 @@ const version = `${release.tag} · ${product.publishedAt.slice(0, 10)} UTC`;
 // Counts come from the website's catalog release snapshot.
 const PAGES = {
   home: {
-    zh: { eyebrow: 'Sleepy', title: '开源课表\n构建无壳,自由自在', sub: `${version} · ${catalog.rowCount} 所学校直连 · 本地优先` },
-    en: { eyebrow: 'Sleepy', title: 'Open-source timetable\nBuilt open. Feels free.', sub: `${version} · ${catalog.rowCount} schools supported · local-first` },
+    zh: { eyebrow: 'Sleepy', title: '免费无广告\n大学生课程表', sub: `Android 与 iOS · ${catalog.rowCount} 条学校目录记录 · 本地优先` },
+    en: { eyebrow: 'Sleepy', title: 'Free, ad-free\nuniversity timetable', sub: `Android & iOS · ${catalog.rowCount} school directory entries · local-first` },
   },
   schools: {
     // Verified breakdown: catalog.configuredCount configured, catalog.unverifiedCount unverified, catalog.pendingCount pending
-    zh: { eyebrow: '学校查找', title: '收录与检索', sub: `收录 ${catalog.rowCount} 所高校教务直连 · 涵盖 ${catalog.typeCount} 种教务协议` },
-    en: { eyebrow: 'School lookup', title: 'Coverage & search', sub: `${catalog.rowCount} universities supported · ${catalog.typeCount} academic protocols` },
+    zh: { eyebrow: '学校查找', title: '收录与检索', sub: `${catalog.rowCount} 条目录记录 · 已配置 ${catalog.configuredCount} · 未验证 ${catalog.unverifiedCount}` },
+    en: { eyebrow: 'School lookup', title: 'Coverage & search', sub: `${catalog.rowCount} entries · ${catalog.configuredCount} configured · ${catalog.unverifiedCount} unverified` },
   },
   download: {
     zh: { eyebrow: '下载中心', title: '下载 Sleepy', sub: `${version} · 通用 APK · 全架构与校验和` },
@@ -70,7 +70,7 @@ function pageHtml(slug, lang) {
   .badge{position:absolute;right:72px;bottom:64px;z-index:2;font-size:24px;color:#0F0D15;background:#D0BCFF;border-radius:9999px;padding:10px 28px;font-weight:700}
   </style></head><body>
   <div class="txt"><div class="eyebrow">${c.eyebrow}</div><h1>${c.title}</h1><p class="sub">${c.sub}</p></div>
-  <div class="art"></div><div class="badge">Android · GPL-3.0</div>
+  <div class="art"></div><div class="badge">${slug === 'home' ? 'Android · iOS' : 'Sleepy · GPL-3.0'}</div>
   </body></html>`;
 }
 

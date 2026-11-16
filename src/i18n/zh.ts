@@ -4,21 +4,21 @@
 // 泄漏闸(page.en.test walk zh 含汉字叶子 ⊄ EN 页):短叶子避真实校名子串 → AppBar 锚点用「教务直连/学校名录」而非裸「教务/学校」。
 export const zh = {
   meta: {
-    title: 'Sleepy — 开源课表,构建无壳,自由自在',
+    title: 'Sleepy 轻课表 — 免费无广告的开源大学生课程表 | Android 与 iOS',
     // 计数派生闸(§15):条数不当校数说(§4.1),现值由页面层传入
     description: (rows: number) =>
-      `收录 ${rows} 所学校教务直连。本地优先、源码公开的 Android 课表。`,
+      `Sleepy 轻课表是免费、无广告的开源大学生课程表，提供 Android 与 iOS 原生应用和网页体验。支持课程管理、课表导入与桌面小组件；学校目录收录 ${rows} 条，按状态查看适配情况。`,
   },
   iosDownload: {
     storeAlt: '在 App Store 下载',
     storeAria: '在 App Store 下载 Sleepy iOS 正式版',
     testFlightLabel: '通过 TestFlight 安装',
     testFlightAria: '通过 Apple TestFlight 安装 Sleepy iOS 公测版',
-    note: '中国大陆以外的 App Store 均已上线。中国大陆区仍在审核中，可通过 TestFlight 安装。',
+    note: 'App Store 可用性以你所在地区的商店页面为准；无法获取时，可查看 TestFlight 是否开放名额。',
   },
   hero: {
     slogan: '构建无壳,自由自在',
-    sub: '开源 Android 课表:三视图、课程编辑、教务导入与桌面组件。课表保存在本机,联网导入按所选服务发起请求。',
+    sub: 'Sleepy 轻课表是一款免费、无广告的开源大学生课程表，提供 Android 与 iOS 原生应用。课表保存在本机，支持课程管理、课表导入与桌面小组件；各端功能与发布版本独立。',
     ctaDownload: '下载',
     ctaTrial: '在线体验',
     demoTitle: 'Sleepy 完整网页版',
@@ -30,7 +30,7 @@ export const zh = {
     demoOpen: '单独打开完整网页版',
     deviceCaption: '周视图应用截图',
     // ribbon = 不对称佐证条:派生大数字领头 + 单位短语,两事实跟随
-    ribbon: { schools: '所学校直连', license: 'GPL-3.0 开源', privacy: '数据留存本机' },
+    ribbon: { schools: '条学校目录记录', license: '源码公开', privacy: '本地优先' },
   },
   views: {
     heading: '三视图,各得其所',
@@ -52,7 +52,7 @@ export const zh = {
       editing: { title: '调整这一次,也能撤回', body: '支持单次课程调整、拖动排课与空格快速加课;拖到边缘停留 500 毫秒可翻页。多步撤回与重做默认保留 5 步,可在实验室配置。历史只在进程内保存,重启后不会保留。' },
       appearance: { title: '主题与编辑参考', body: 'Material 3 Expressive 动效、液态玻璃、动态主题与三种课程配色。幽灵滑杆标出调整前的原始值,节次表头与时间对齐。应用动态取色从 Android 12 起,主题图标从 Android 13 起;玻璃着色器使用 API 33,正式版旧设备仍有已知问题,不同设备效果有差异。界面支持简体中文、繁体中文、英文、日文与西班牙文。' },
       exchange: { title: '导入、分享与备份', body: '支持 WakeUP 离线 JSON、分享文本与在线口令导入,在线口令需要访问第三方服务。原生分享导出使用 sleepy-v1 文本,另有 WakeUp 兼容 JSON 与 ICS 日历导出;备份用于保存和迁移数据。' },
-      widgets: { title: '五类桌面组件', body: '周网格、周列表、今日、未来两天与周视图共五个家族,包含 13 种 XML 变体。OriginOS 桌面显示属于标准 AppWidget,与原子岛提醒不同;厂商提醒能力取决于系统、权限和后台策略。' },
+      widgets: { title: '五类桌面组件', body: '周网格、周列表、今日、未来两天与周视图共五个家族。OriginOS 桌面显示属于标准 AppWidget,与原子岛提醒不同;厂商提醒能力取决于系统、权限和后台策略。' },
       privacy: { title: '本地课表,按需联网', body: '课表管理可离线使用,无需 Sleepy 账号。学校登录信息按教务导入需要提供;在线口令、教务请求、节假日、版本检查和下载会联网。文件分享与备份由你发起。' },
       console: { title: '主动启用的诊断接口', body: '本机回环调试控制台默认关闭,启用后需要认证,具有读写能力并可修改课表数据。仅在了解操作影响时启用。iOS 由独立仓库发布,功能与可用版本以该仓库说明为准。' },
     },
@@ -62,7 +62,7 @@ export const zh = {
     body: '先查目录状态,再用学校账号登录教务系统导入。已配置条目仍可能受学校改版、验证码或网络限制影响;收录不代表导入成功保证。',
     imageAlt: '教务导入应用截图',
     // 派生数字 chip(§4 M3:卡缘 assist-chip「N 条直连」;条数不当校数说,§4.1)
-    chipLabel: (rows: number) => `${rows} 条直连`,
+    chipLabel: (rows: number) => `${rows} 条目录记录`,
   },
   schools: {
     heading: '收录与检索',
@@ -136,12 +136,12 @@ export const zh = {
   },
   trust: {
     heading: '谁在做这个',
-    story: 'Sleepy 由一个人设计与维护:功能以本地优先为前提实现,代码完整公开,接受审计与自行分发。',
+    story: 'Sleepy 由一个人设计与维护:功能以本地优先为前提实现,源码公开,可查阅实现与提交记录。',
     reachOut: '适配问题优先通过 GitHub issue 反馈;不便提交时,群内留言同样会被跟进。',
     privacyHeading: '隐私是架构问题',
-    privacyBody: '课表保存在本机,备份与迁移文件由你保管。Sleepy 无需注册账号;教务导入可能需要学校账号。教务、WakeUP 在线口令、节假日和版本检查会按功能联网,不内置统计或崩溃上报 SDK。',
-    licenseHeading: 'GPL-3.0',
-    licenseBody: '源码完整公开,可以审查、修改、自行发布;仓库中每一个 commit 均可查阅。',
+    privacyBody: '课表保存在本机,备份与迁移文件由你保管。Sleepy 无需注册账号;教务导入可能需要学校账号。教务、WakeUP 在线口令、节假日和版本检查会按功能联网。Android 可由你主动将完整备份上传到自选 WebDAV 服务器；不内置统计或崩溃上报 SDK。',
+    licenseHeading: '源码与许可',
+    licenseBody: 'Sleepy 自有代码采用 GPL-3.0；第三方组件遵循各自许可，包括有限制商业使用的源码可见组件。修改和分发前请查阅完整许可说明。',
     communityHeading: '社区',
     sponsorLink: '赞助 Sleepy',
     qqGroupLabel: 'QQ 群',
@@ -169,8 +169,9 @@ export const zh = {
     community: '社区',
     qq: 'QQ 群',
     faq: '常见问答',
+    guides: '使用指南',
     sponsor: '赞助 Sleepy',
-    license: 'GPL-3.0 开源',
+    license: '源码公开',
     build: '构建',
     backToTop: '回到顶部',
     noJs: '禁用 JavaScript 时全量清单照常可读。',
@@ -178,7 +179,7 @@ export const zh = {
   // v5 四页键组(spec §4 文案 + 数字纪律:占位 {rows}/{types}/{shown}/{total}/{tag}/{minSdk}/{date} 由渲染端替换)
   homeSchoolCard: {
     // 计数派生闸(§15/§4.1):带协议条目数不当校数说(同录多入口、跨校区计数)
-    count: '{rows} 条教务直连 · {types} 种协议,输入校名即可确认收录。',
+    count: '{rows} 条目录记录 · {types} 种协议，输入校名查看已配置或未验证状态。',
     cta: '查找我的学校',
   },
   schoolsPage: {
@@ -218,7 +219,7 @@ export const zh = {
   },
   faqPage: {
     heading: '常见问答',
-    sub: '以下回答只覆盖当前发布物能核实的事实。',
+    sub: '查找安装、课表导入、小组件与隐私说明。功能问答保留各自的核对版本，最新变化见更新说明。',
     updatedPrefix: '内容更新于',
     tocLabel: '目录',
     tailTitle: '以上未覆盖的问题可在 GitHub Issues 反馈',

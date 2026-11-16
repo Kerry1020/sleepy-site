@@ -11,9 +11,17 @@ const date = new Intl.DateTimeFormat(en ? 'en' : 'zh-CN', { dateStyle: 'long', t
 ---
 <div class="site-col document-page">
   <PageHeader title={en ? 'Privacy policy' : '隐私政策'} description={en ? 'How Sleepy handles local data, permissions and network access. The published Chinese policy is reproduced in full below.' : '了解课表数据保存在何处、权限用来做什么，以及哪些功能需要联网。以下保留已公布的政策原文。'}>
-    <span slot="meta">{en ? 'Effective ' : '生效日期：'}<time datetime={policy.effectiveDate}>{date}</time></span>
+    <span slot="meta">{en ? 'Original policy effective ' : '原文生效日期：'}<time datetime={policy.effectiveDate}>{date}</time></span>
     <a slot="actions" class="site-button site-button--outlined" href={policy.source}>{en ? 'View original policy' : '查看政策原始页面'}</a>
   </PageHeader>
+  <aside class="document-callout" data-privacy-update aria-labelledby="privacy-update-heading">
+    <h2 id="privacy-update-heading">{en ? 'Android v1.0.65 network behavior update' : 'Android v1.0.65 联网行为补充'}</h2>
+    <p>{en
+      ? 'Reviewed on November 16, 2026: timetables are stored locally by default. If you choose WebDAV backup, a full backup is uploaded directly to your selected HTTPS server after you confirm. The backup file itself is not encrypted; the server operator may read it. The WebDAV password is encrypted locally with Android Keystore and excluded from the backup. This feature does not use a Sleepy relay server.'
+      : '2026 年 11 月 16 日核验：课表默认保存在本机。选择 WebDAV 备份时，确认后会将完整备份直接上传到你指定的 HTTPS 服务器。备份文件本身未加密，服务器管理者可能读取其内容；WebDAV 密码由 Android Keystore 在本机加密保存，不进入备份包。此功能不经过 Sleepy 中转服务器。'}</p>
+    <p><a href={en ? '/en/guides/backup-restore/' : '/guides/backup-restore/'}>{en ? 'Backup instructions and release-source evidence' : '备份操作说明与发布源码依据'}</a></p>
+    <p>{en ? 'The October 18, 2026 policy below is reproduced as published. Read its local-storage statements together with the optional WebDAV behavior above.' : '下方保留 2026 年 10 月 18 日公布的政策原文；其中的本地存储说明应结合上方可选 WebDAV 行为理解。'}</p>
+  </aside>
   <div class="document-grid">
     <DocumentNav label={en ? 'On this page' : '本页内容'} links={policy.sections.map((section, i) => ({ href: `#${section.id}`, label: en ? headings[i] : section.title.replace(/^[一二三四五六七八九]、/, '') }))} />
     <article class="document-body privacy-policy" lang="zh-CN">

@@ -6,20 +6,20 @@ import type { SiteCopy } from './zh';
 
 export const en: SiteCopy = {
   meta: {
-    title: 'Sleepy — open-source timetable, built free',
+    title: 'Sleepy — Free, Ad-Free Open-Source University Timetable for Android & iOS',
     description: (rows: number) =>
-      `${rows} universities and schools supported for direct timetable import. A local-first, open-source Android timetable.`,
+      `Sleepy: free, ad-free, open-source university timetable for Android & iOS. Import courses, use widgets and check ${rows} school directory records.`,
   },
   iosDownload: {
     storeAlt: 'Download on the App Store',
     storeAria: 'Download the Sleepy iOS release on the App Store',
     testFlightLabel: 'Install with TestFlight',
     testFlightAria: 'Install the Sleepy iOS beta with Apple TestFlight',
-    note: 'Available on the App Store outside mainland China. The mainland China release is still under review; install with TestFlight there.',
+    note: 'App Store availability depends on your region. If it is unavailable, check whether TestFlight has open places.',
   },
   hero: {
     slogan: 'Built open. Feels free.',
-    sub: 'An open-source Android timetable with three views, course editing, academic import and home-screen widgets. Timetables are stored locally; online imports contact the selected service.',
+    sub: 'Sleepy is a free, ad-free, open-source university timetable with native Android and iOS apps. Keep timetables on your device, manage courses, import schedules and use home-screen widgets. Each platform has its own features and releases.',
     ctaDownload: 'Download',
     ctaTrial: 'Try it online',
     demoTitle: 'Full Sleepy web app',
@@ -30,7 +30,7 @@ export const en: SiteCopy = {
     demoHint: 'Use the full web app with its original interface and features.',
     demoOpen: 'Open full web app in a new tab',
     deviceCaption: 'Week view app screenshot',
-    ribbon: { schools: 'schools supported', license: 'GPL-3.0 open source', privacy: 'Data stays on device' },
+    ribbon: { schools: 'school directory entries', license: 'Public source', privacy: 'Local-first' },
   },
   views: {
     heading: 'Three views, each in its place',
@@ -51,7 +51,7 @@ export const en: SiteCopy = {
       editing: { title: 'Change one occurrence, then undo', body: 'Adjust a single class occurrence, drag courses and add a class from an empty slot. Hold at the edge for 500 milliseconds to turn the page. Undo and redo keep 5 steps by default, configurable in Labs. History stays in process memory and is lost on restart.' },
       appearance: { title: 'Themes and editing references', body: 'Material 3 Expressive motion, liquid glass, dynamic themes and three course-color modes. Ghost sliders mark the original value before adjustment; period headers align with times. App dynamic colors require Android 12; themed icons require Android 13. The glass shader uses API 33, and this release still has known issues on older devices; rendering varies by device. Five UI languages are available: Simplified Chinese, Traditional Chinese, English, Japanese and Spanish.' },
       exchange: { title: 'Import, share and back up', body: 'Import WakeUP offline JSON, share text or online tokens. Online tokens contact a third-party service. Native sharing exports sleepy-v1 text; WakeUp-compatible JSON and ICS calendar export are separate options. Backups preserve data for restoration and migration.' },
-      widgets: { title: 'Five widget families', body: 'Week grid, week list, today, next two days and week view form five families with 13 XML variants. OriginOS home-screen widgets are standard AppWidget, separate from Atomic Island reminders. Vendor reminder features depend on the system, permissions and background policy.' },
+      widgets: { title: 'Five widget families', body: 'Week grid, week list, today, next two days and week view form five families. OriginOS home-screen widgets are standard AppWidget, separate from Atomic Island reminders. Vendor reminder features depend on the system, permissions and background policy.' },
       privacy: { title: 'Local timetables, network when needed', body: 'Manage timetables offline without a Sleepy account. School credentials may be needed for academic import. Online tokens, academic requests, holidays, version checks and downloads use the network. You initiate file sharing and backups.' },
       console: { title: 'Opt-in diagnostics', body: 'The authenticated loopback debug console is off by default. It has read/write access and can modify timetable data; enable it only when you understand the operations. iOS releases come from a separate repository, whose documentation defines their features and availability.' },
     },
@@ -60,7 +60,7 @@ export const en: SiteCopy = {
     heading: 'Direct academic connections',
     body: 'Check the catalog status, then sign in with your school account to import. Even configured entries can be affected by school-system changes, captchas or network restrictions. A listing is not an import guarantee.',
     imageAlt: 'Academic import panel app screenshot',
-    chipLabel: (rows: number) => `${rows} direct connections`,
+    chipLabel: (rows: number) => `${rows} directory entries`,
   },
   schools: {
     heading: 'Catalog and search',
@@ -134,12 +134,12 @@ export const en: SiteCopy = {
   },
   trust: {
     heading: 'Who makes this',
-    story: 'Sleepy is designed and maintained by one person: features are built local-first, the source is fully public, and auditing or self-publishing is welcome.',
+    story: 'Sleepy is designed and maintained by one person: features are built local-first, the source and commit history are public for review.',
     reachOut: 'For adapter issues, file a GitHub issue first; when that is inconvenient, a group message gets the same follow-up.',
     privacyHeading: 'Privacy is an architecture question',
-    privacyBody: 'Timetables are stored locally, with backup and migration files under your control. No Sleepy account is needed; academic import may require school credentials. Academic systems, WakeUP online tokens, holidays and version checks use the network when invoked. No analytics or crash-reporting SDK is bundled.',
-    licenseHeading: 'GPL-3.0',
-    licenseBody: 'The source is fully public — audit it, change it, ship your own build; every commit in the repository is readable.',
+    privacyBody: 'Timetables are stored locally, with backup and migration files under your control. No Sleepy account is needed; academic import may require school credentials. Academic systems, WakeUP online tokens, holidays and version checks use the network when invoked. On Android, you can manually upload a full backup to your chosen WebDAV server. No analytics or crash-reporting SDK is bundled.',
+    licenseHeading: 'Source and licenses',
+    licenseBody: 'Sleepy’s own code uses GPL-3.0. Third-party components retain their own licenses, including source-available components with commercial-use restrictions. Review the full notices before modifying or redistributing a build.',
     communityHeading: 'Community',
     sponsorLink: 'Sponsor Sleepy',
     qqGroupLabel: 'QQ group',
@@ -165,14 +165,15 @@ export const en: SiteCopy = {
     community: 'Community',
     qq: 'QQ group',
     faq: 'FAQ',
+    guides: 'User guides',
     sponsor: 'Sponsor Sleepy',
-    license: 'GPL-3.0 open source',
+    license: 'Public source',
     build: 'Build',
     backToTop: 'Back to top',
     noJs: 'With JavaScript disabled the full list stays readable.',
   },
   homeSchoolCard: {
-    count: '{rows} direct academic connections · {types} protocols — search by school name to check support.',
+    count: '{rows} directory entries · {types} protocols — search by school name to check configured or unverified status.',
     cta: 'Find my school',
   },
   schoolsPage: {
@@ -212,7 +213,7 @@ export const en: SiteCopy = {
   },
   faqPage: {
     heading: 'FAQ',
-    sub: 'The answers below cover only facts verifiable in the current release.',
+    sub: 'Find installation, import, widget and privacy answers. Feature answers keep their reviewed version; see the release notes for newer changes.',
     updatedPrefix: 'Content updated on',
     tocLabel: 'Table of contents',
     tailTitle: 'Questions not covered above can be raised on GitHub Issues',

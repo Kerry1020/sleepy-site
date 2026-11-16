@@ -1,5 +1,6 @@
 {
   "updatedAt": "2026-11-10",
+  "reviewedVersion": "v1.0.64",
   "sections": [
     {
       "zh": "项目是什么",
@@ -437,8 +438,8 @@
         {
           "id": "sec-2-q-2",
           "q": {
-            "zh": "当前版本是多少？",
-            "en": "What is the current version?"
+            "zh": "这份功能问答基于哪个版本核对？",
+            "en": "Which version was this feature FAQ reviewed against?"
           },
           "a": {
             "zh": [
@@ -447,7 +448,7 @@
                 "inline": [
                   {
                     "t": "text",
-                    "v": "本页描述 v1.0.64，versionCode 为 10064。该正式版发布于 2026-11-09 UTC；已安装版本可在应用“关于”页查看。下载以 "
+                    "v": "本页描述 v1.0.64，versionCode 为 10064。该正式版发布于 2026-11-09 UTC；已安装版本可在应用“关于”页查看。这份功能快照对应 "
                   },
                   {
                     "t": "link",
@@ -461,7 +462,35 @@
                   },
                   {
                     "t": "text",
-                    "v": "为准；之后的源码提交和 debug 包不自动算作此正式版已有功能。"
+                    "v": "。最新 Android 正式版请查看"
+                  },
+                  {
+                    "t": "link",
+                    "href": "https://sleepy.is-my.app/download/",
+                    "inline": [
+                      {
+                        "t": "text",
+                        "v": "官网下载页"
+                      }
+                    ]
+                  },
+                  {
+                    "t": "text",
+                    "v": "与"
+                  },
+                  {
+                    "t": "link",
+                    "href": "https://sleepy.is-my.app/releases/",
+                    "inline": [
+                      {
+                        "t": "text",
+                        "v": "更新说明"
+                      }
+                    ]
+                  },
+                  {
+                    "t": "text",
+                    "v": "；后续版本的能力应按各自说明核对。"
                   }
                 ]
               }
@@ -472,7 +501,7 @@
                 "inline": [
                   {
                     "t": "text",
-                    "v": "This page describes v1.0.64, with versionCode 10064. This release was published on 2026-11-09 UTC. Check the app's About page for your installed version. Download from the "
+                    "v": "This page describes v1.0.64, with versionCode 10064. This release was published on 2026-11-09 UTC. Check the app's About page for your installed version. This feature snapshot corresponds to the "
                   },
                   {
                     "t": "link",
@@ -486,7 +515,35 @@
                   },
                   {
                     "t": "text",
-                    "v": "; later source commits and debug builds do not automatically count as features in this official release."
+                    "v": ". Find the latest Android release on the "
+                  },
+                  {
+                    "t": "link",
+                    "href": "https://sleepy.is-my.app/en/download/",
+                    "inline": [
+                      {
+                        "t": "text",
+                        "v": "official download page"
+                      }
+                    ]
+                  },
+                  {
+                    "t": "text",
+                    "v": " and in the "
+                  },
+                  {
+                    "t": "link",
+                    "href": "https://sleepy.is-my.app/en/releases/",
+                    "inline": [
+                      {
+                        "t": "text",
+                        "v": "release notes"
+                      }
+                    ]
+                  },
+                  {
+                    "t": "text",
+                    "v": ". Check each newer version against its own notes."
                   }
                 ]
               }

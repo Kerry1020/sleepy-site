@@ -5,7 +5,7 @@
 // 终审 I2:入口钮 href=/schools/?focus=s,聚焦承接 = Task 4 岛读 focus=s(合同侧 pin 在 page.index 文案块)。
 import { zh } from '../../i18n/zh';
 import type { SiteCopy } from '../../i18n/zh';
-import { rowCount, typeCount } from '../../lib/schools-view';
+import { rowCount, typeCount, configuredCount, unverifiedCount } from '../../lib/schools-view';
 
 interface Props {
   copy?: SiteCopy;
@@ -25,6 +25,7 @@ const count = t.count.replace('{rows}', String(rowCount)).replace('{types}', Str
       <div class="schools-card__copy">
         <h2 class="t-headline-large" id="schoolCard-title">{c.schools.heading}</h2>
         <p class="t-body-medium schools-card__count tnum">{count}</p>
+        <p class="t-body-small schools-card__count tnum" data-school-status-summary>{lang === 'zh' ? `已配置 ${configuredCount} 条 · 未验证 ${unverifiedCount} 条。收录不代表逐校验证或保证导入成功。` : `${configuredCount} configured · ${unverifiedCount} unverified. A listing does not guarantee a successful import.`}</p>
       </div>
       <a class="entry-card schools-card__link t-label-large" href={href}>
         {t.cta}

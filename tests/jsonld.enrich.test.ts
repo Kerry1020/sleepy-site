@@ -4,11 +4,8 @@ import { JSDOM } from 'jsdom';
 import { site, repoUrl } from '../src/i18n/ui';
 import release from '../src/data/release.json';
 
-// SEO/GEO 批次(2026-10-27):SoftwareApplication 字段补全 + 站级实体图去歧义。
-// Google 官方 SoftwareApp 文档:offers 必填(免费应用 price=0),applicationCategory
-// 必为 22 枚举之一;课程表应用归 EducationalApplication。Organization sameAs 多源、
-// alternateName 中文品牌 = 实体消歧(GEO 核心:AI 引擎对"Sleepy=轻课表"建同一实体)。
-// 消费 dist/client 产物 —— 先跑 npm run build。
+// Built-page checks for factual app metadata and stable product identities.
+// These assertions do not imply rich-result eligibility or AI citation probability.
 
 const doc = (p: string) =>
   new JSDOM(readFileSync(new URL(`../dist/client/${p}`, import.meta.url), 'utf8')).window.document;
@@ -21,7 +18,7 @@ const graphOf = (p: string) =>
     .map((s) => JSON.parse(s.textContent!))
     .find((x) => x['@graph'])!['@graph'];
 
-describe('SoftwareApplication 字段补全(Google 官方必填/推荐面)', () => {
+describe('SoftwareApplication 的真实产品信息', () => {
   for (const [file, lang] of [['index.html', 'zh'], ['en/index.html', 'en']] as const) {
     it(`${lang}:applicationCategory=EducationalApplication 且 offers 免费声明`, () => {
       const ld = pageLd(file)[0];
@@ -30,6 +27,13 @@ describe('SoftwareApplication 字段补全(Google 官方必填/推荐面)', () =
       expect(ld.offers.price).toBe('0');
       expect(ld.offers.priceCurrency).toBe('USD');
       expect(ld.dateModified).toBe(release.date);
+      expect(ld['@id']).toBe(`${site}/#android-app`);
+      expect(ld.url).toBe(`${site}${lang === 'zh' ? '/download/' : '/en/download/'}`);
+      expect(ld.operatingSystem).toBe('Android');
+      expect(ld.description).toContain(lang === 'zh' ? '大学生课程表' : 'university timetable');
+      expect(ld.publisher).toEqual({ '@id': `${site}/#organization` });
+      expect(ld.aggregateRating).toBeUndefined();
+      expect(ld.review).toBeUndefined();
     });
   }
 });
@@ -45,8 +49,10 @@ describe('站级实体图去歧义', () => {
   it('Organization alternateName 含中文名「轻课表」', () => {
     expect(org().alternateName).toContain('轻课表');
   });
-  it('WebSite 带 description(实体可被摘要引用)', () => {
+  it('WebSite description 描述两个独立发布的原生平台', () => {
     const ws = graphOf('index.html').find((n: { '@type': string }) => n['@type'] === 'WebSite');
-    expect(ws.description).toBeTruthy();
+    expect(ws.description).toContain('Android');
+    expect(ws.description).toContain('iOS');
+    expect(ws.description).toContain('独立发布');
   });
 });
