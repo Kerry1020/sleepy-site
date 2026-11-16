@@ -29,8 +29,8 @@ Voluntary sponsorship is welcome. Alipay and WeChat payment codes are on the [sp
 ### Which Android versions are supported?
 The minimum is Android 8.0 (API 26); target and compile SDK are 37. The release package is `com.lingion.sleepy`, and the debug package in this source version is `com.lingion.sleepy.debug`. Their data is stored separately. Meeting the minimum system requirement does not mean every visual effect or vendor live notification works on older systems.
 
-### What is the current version?
-This page describes v1.0.64, with versionCode 10064. This release was published on 2026-11-09 UTC. Check the app's About page for your installed version. Download from the [v1.0.64 release page](https://github.com/lingion/sleepy/releases/tag/v1.0.64); later source commits and debug builds do not automatically count as features in this official release.
+### Which version was this feature FAQ reviewed against?
+This page describes v1.0.64, with versionCode 10064. This release was published on 2026-11-09 UTC. Check the app's About page for your installed version. This feature snapshot corresponds to the [v1.0.64 release page](https://github.com/lingion/sleepy/releases/tag/v1.0.64). Find the latest Android release on the [official download page](https://sleepy.is-my.app/en/download/) and in the [release notes](https://sleepy.is-my.app/en/releases/). Check each newer version against its own notes.
 
 ### Which APK ABIs are provided?
 The official release provides four APK variants:

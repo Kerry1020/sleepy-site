@@ -1,32 +1,35 @@
 # Sleepy · 轻课表 — Official Website
 
-> Release snapshot: Android v1.0.64, source commit 77b878fd5c8903a3f201ea938b3b152de4c4fbc0, published 2026-11-09T19:03:44Z. Snapshot refreshed 2026-11-10. Source: https://github.com/lingion/sleepy/tree/v1.0.64.
+> Release snapshot: Android v1.0.65, source commit 3a7cbed352f4f8e1144e2e532840b9bea93b25d3, published 2026-11-15T18:56:37Z. Snapshot refreshed 2026-11-16. Source: https://github.com/lingion/sleepy/tree/v1.0.65.
 
-Sleepy is an independent, GPL-3.0, local-first university timetable app maintained by Lingion. Android, iOS and the web trial have separate feature sets.
+Sleepy (轻课表) is an independent, free, ad-free, local-first university timetable app maintained by Lingion. Project code is GPL-3.0; bundled third-party components retain their own licenses. See the licenses page for scope. Android, iOS and the web trial have separate feature sets.
 
 ## Current release
 
-- Release: https://github.com/lingion/sleepy/releases/tag/v1.0.64
+- Release: https://github.com/lingion/sleepy/releases/tag/v1.0.65
 - Complete Chinese release notes: https://sleepy.is-my.app/releases/
 - Complete English release notes: https://sleepy.is-my.app/en/releases/
 - Machine-readable release notes, APK assets and SHA-256 digests: https://sleepy.is-my.app/release.json
 - Download: https://sleepy.is-my.app/download/
-- app-arm64-v8a-release.apk: https://github.com/lingion/sleepy/releases/download/v1.0.64/app-arm64-v8a-release.apk (SHA-256 fd0e20e19740eb7da862eabae681130d69696f5970c7afaf91473d128720f043)
-- app-armeabi-v7a-release.apk: https://github.com/lingion/sleepy/releases/download/v1.0.64/app-armeabi-v7a-release.apk (SHA-256 9c3c29d8b8f695b517397a5016160f697a0c400ff1e0302708751eaa5bb1613d)
-- app-universal-release.apk: https://github.com/lingion/sleepy/releases/download/v1.0.64/app-universal-release.apk (SHA-256 7e355b0f46977c1124d63a9d5475e391adca4cc5291e65eda4ef5675549e0883)
-- app-x86_64-release.apk: https://github.com/lingion/sleepy/releases/download/v1.0.64/app-x86_64-release.apk (SHA-256 7ebdddaa84f7e9b19e3390cbd5b7487cb75166e718868d7038155eb2a7282141)
-- Checksum manifest: https://github.com/lingion/sleepy/releases/download/v1.0.64/sha256sums.txt
+- app-arm64-v8a-release.apk: https://github.com/lingion/sleepy/releases/download/v1.0.65/app-arm64-v8a-release.apk (SHA-256 31cc908c0568fb8639eb17001b0e9fecaaa33e171375f82b717281023e6324fc)
+- app-armeabi-v7a-release.apk: https://github.com/lingion/sleepy/releases/download/v1.0.65/app-armeabi-v7a-release.apk (SHA-256 d29cfcbc54c0b29634fab4bc88283f9659049347967f1e8b3eb2cf9cae4fd3b9)
+- app-universal-release.apk: https://github.com/lingion/sleepy/releases/download/v1.0.65/app-universal-release.apk (SHA-256 4d5096a0c5c26b8e207f68c0f459158823cf4c073e6d1db7c924a5bac2588fb7)
+- app-x86_64-release.apk: https://github.com/lingion/sleepy/releases/download/v1.0.65/app-x86_64-release.apk (SHA-256 419ef2b28f79d7f98db4eb623d6132ad7f24d0380b2df1fa18eff170f1c6ac81)
+- Checksum manifest: https://github.com/lingion/sleepy/releases/download/v1.0.65/sha256sums.txt
 
 ## Website pages
 
 - https://sleepy.is-my.app/ and /en/: product overview and interactive demo timetable.
-- https://sleepy.is-my.app/schools/ and /en/schools/: 2881 school connections from v1.0.64 (77b878fd5c8903a3f201ea938b3b152de4c4fbc0). Listing does not guarantee a successful login at every school.
+- https://sleepy.is-my.app/schools/ and /en/schools/: 2881 school directory entries (355 configured, 2526 unverified) from v1.0.65 (3a7cbed352f4f8e1144e2e532840b9bea93b25d3). Listing does not guarantee a successful login at every school.
 - https://sleepy.is-my.app/releases/ and /en/releases/: complete upstream notes in the page language only, refreshed with the assets as one deployment. The machine-readable release snapshot preserves the full bilingual original.
 - https://sleepy.is-my.app/faq/ and /en/faq/: reviewed bilingual FAQ, with its separate editorial date. New release behavior is documented in the release notes. Machine-readable FAQ: https://sleepy.is-my.app/faq.json.
+- User guides: https://sleepy.is-my.app/guides/ and https://sleepy.is-my.app/en/guides/.
+- WakeUp migration guide: https://sleepy.is-my.app/guides/wakeup-migration/ and https://sleepy.is-my.app/en/guides/wakeup-migration/. Offline exports and online codes are distinct import paths; preview and check dates and period times.
+- Backup and restore guide: https://sleepy.is-my.app/guides/backup-restore/ and https://sleepy.is-my.app/en/guides/backup-restore/. Android v1.0.65 includes manual WebDAV backup and restoration; this is not automatic realtime or cross-platform synchronization. The guide cites the released implementation and its review date.
 - Web trial: https://sleepy.is-my.app/preview
 - Android source: https://github.com/lingion/sleepy. Project index: https://github.com/lingion/sleepy/blob/main/llms.txt.
-- iOS source: https://github.com/lingion/sleepy-ios. App Store release: https://apps.apple.com/app/id6827001840, available outside mainland China. The mainland China release is still under review; use TestFlight there: https://testflight.apple.com/join/SxymmDzf. Store and beta versions are independent; GitHub is the source repository, not an iOS update channel.
-- App Store and TestFlight availability was reviewed on 2026-11-10, separately from the Android release snapshot.
+- iOS source: https://github.com/lingion/sleepy-ios. App Store release: https://apps.apple.com/app/id6827001840. Availability depends on the selected store region. If unavailable, check whether TestFlight has open places: https://testflight.apple.com/join/SxymmDzf. Store and beta versions are independent; GitHub is the source repository, not an iOS update channel.
+- iOS store availability, beta capacity and release versions must be checked in their respective channels; they do not follow the Android release snapshot.
 - Android download source: choose the project mirror (https://gh.qdp.qzz.io) or original GitHub files on https://sleepy.is-my.app/download/. Both provide the same release files; verify with the published SHA-256 manifest.
 - Open-source licenses and credits: https://sleepy.is-my.app/licenses/ and /en/licenses/.
 - Privacy policy: https://sleepy.is-my.app/privacy/ and /en/privacy/.

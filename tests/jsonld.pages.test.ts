@@ -5,10 +5,8 @@ import { site } from '../src/i18n/ui';
 import release from '../src/data/release.json';
 import faq from '../src/data/faq.json';
 
-// SEO 极致批次 S3b/S3c:en 主页 SoftwareApplication 对等(双语对页实体对称,
-// en 爬虫不再只拿到站级图);FAQ 双语页 FAQPage 富结果图(「做到极致」定令 2026-10-27,
-// 覆盖旧 D8 禁例——D8 成文于富结果收紧前,FAQPage 现仍被 Google/Bing 展示)。
-// 消费 dist/client 产物 —— 先跑 npm run build。
+// Built-page checks for bilingual Android application metadata and FAQ content parity.
+// FAQPage markup describes the visible answers; it does not promise a rich result.
 
 const doc = (p: string) =>
   new JSDOM(readFileSync(new URL(`../dist/client/${p}`, import.meta.url), 'utf8')).window.document;

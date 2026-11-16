@@ -4,7 +4,7 @@
 // 开源/社区 = 行式列表,1px outline-variant 发丝边、零投影。行宽 ≤34ch。
 import { zh } from '../../i18n/zh';
 import type { SiteCopy } from '../../i18n/zh';
-import { qqGroup, sponsorUrl, repoUrl, faqUrl } from '../../i18n/ui';
+import { qqGroup, sponsorUrl, repoUrl } from '../../i18n/ui';
 
 interface Props {
   copy?: SiteCopy;
@@ -32,13 +32,14 @@ const home = Astro.url.pathname.startsWith('/en/') ? '/en/' : '/';
         <li class="trust__row reveal" style="--reveal-i: 0;">
           <h4 class="t-title-medium">{t.licenseHeading}</h4>
           <p class="t-body-medium">{t.licenseBody}</p>
+          <a class="trust__row-link t-label-large" href={`${home}licenses/`}>{copy.footer.licenses}</a>
           <a class="trust__row-link t-label-large" href={repoUrl}>GitHub · lingion/sleepy</a>
         </li>
         <li class="trust__row reveal" style="--reveal-i: 1;">
           <h4 class="t-title-medium">{t.communityHeading}</h4>
           <ul class="trust__links t-body-medium">
             <li><a href={`${repoUrl}/issues`}>Issues</a></li>
-            <li><a href={faqUrl}>FAQ</a></li>
+            <li><a href={`${home}faq/`}>FAQ</a></li>
             <li><a href={sponsorUrl}>{t.sponsorLink}</a></li>
             <li>{t.qqGroupLabel} {qqGroup}</li>
           </ul>

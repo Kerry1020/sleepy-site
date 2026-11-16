@@ -9,6 +9,7 @@ import SchoolsCard from '../../components/sections/SchoolsCard.astro';
 import Reminders from '../../components/sections/Reminders.astro';
 import Gallery from '../../components/sections/Gallery.astro';
 import Trust from '../../components/sections/Trust.astro';
+import GettingStarted from '../../components/sections/GettingStarted.astro';
 import Download from '../../components/sections/Download.astro';
 import { en } from '../../i18n/en';
 import { site } from '../../i18n/ui';
@@ -33,6 +34,7 @@ const jsonLd = softwareApplicationJsonLd('en');
   <Views copy={en} />
   <Connect copy={en} />
   <SchoolsCard copy={en} lang="en" />
+  <GettingStarted lang="en" />
   <Reminders copy={en} />
   <Gallery copy={en} />
   <Trust copy={en} />

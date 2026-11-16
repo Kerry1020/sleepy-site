@@ -1,5 +1,5 @@
-// SoftwareApplication 双语对等生成(SEO 极致批次 S3b)。
-// 单一来源两主页共用——字段漂移=双语实体不对称,爬虫侧表现为两版本描述同一产品却值不同。
+// The Android application's release fields share one immutable release snapshot.
+// iOS has a separate identity and release channel in the site graph.
 import { site, repoUrl } from '../i18n/ui';
 import release from '../data/release.json';
 
@@ -8,18 +8,24 @@ export function softwareApplicationJsonLd(lang: 'zh' | 'en') {
   return {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
+    '@id': `${site}/#android-app`,
     name: 'Sleepy',
+    alternateName: ['Sleepy 轻课表', 'Sleepy 课程表', 'Sleepy Android'],
+    url: `${site}${lang === 'zh' ? '/download/' : '/en/download/'}`,
+    description: lang === 'zh'
+      ? 'Sleepy 轻课表 Android 版：免费、开源、无广告的大学生课程表，支持课程编辑、教务导入与桌面小组件，无需注册 Sleepy 账号。'
+      : 'Sleepy for Android is a free, open-source, ad-free university timetable with course editing, academic import and home-screen widgets. No Sleepy account is required.',
     operatingSystem: 'Android',
-    // Google 官方 SoftwareApp 必填/推荐面:applicationCategory 必为 22 枚举之一,
-    // 课表应用归 EducationalApplication;offers 必填,免费应用显式 price=0
-    // (缺 offers 时 Google 富结果解析直接判不合格)。
+    // Price and category describe the app; they do not establish rich-result eligibility.
+    // Ratings and reviews are omitted because no verified rating source is maintained here.
     applicationCategory: 'EducationalApplication',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
     dateModified: release.date,
     softwareVersion: release.tag,
     downloadUrl: universal.url,
-    license: 'GPL-3.0',
+    license: `${site}${lang === 'zh' ? '/licenses/' : '/en/licenses/'}`,
     sameAs: repoUrl,
+    publisher: { '@id': `${site}/#organization` },
     image: `${site}/og/home-${lang}.png`,
   };
 }

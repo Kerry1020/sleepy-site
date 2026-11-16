@@ -7,7 +7,7 @@ import '../tokens/theme.css';
 import '../tokens/motion.css';
 import '../styles/global.css';
 import '../styles/content.css';
-import { site, repoUrl } from '../i18n/ui';
+import { site, repoUrl, iosRepoUrl, iosAppStoreUrl } from '../i18n/ui';
 import { zh } from '../i18n/zh';
 import { en } from '../i18n/en';
 import release from '../data/release.json';
@@ -39,8 +39,9 @@ const copy = lang === 'zh' ? zh : en;
 const ogLocale = lang === 'zh' ? 'zh_CN' : 'en_US';
 const build = `${release.tag} · ${release.builtAt?.slice(0, 10) ?? ''}`;
 const ogImg = `${ogImage ?? `${site}/og/home-${lang}.png`}?v=${release.tag}`;
-// 站级实体图(SEO 极致批次 S3a):WebSite + Organization 铺全部可收录页,
-// 品牌搜索与知识面板的稳定锚;noindex 页(404)不发。页面级图经 jsonLd prop 另发。
+const chinesePath = lang === 'zh' ? path : mirror;
+// Stable identities connect the official website and independently released apps.
+// Markup describes public facts; it does not guarantee a knowledge panel or AI citation.
 const siteGraph = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -49,19 +50,37 @@ const siteGraph = {
       '@id': `${site}/#website`,
       url: site,
       name: 'Sleepy',
-      description: 'Official website of Sleepy (轻课表) — an offline-first university timetable app for Android.',
+      alternateName: ['轻课表', 'Sleepy 课程表'],
+      description: lang === 'zh'
+        ? 'Sleepy 轻课表官方网站：免费开源、无广告的大学生课程表，提供独立发布的 Android 与 iOS 原生应用及网页体验。'
+        : 'The official website of Sleepy, a free, open-source, ad-free university timetable with independently released native Android and iOS apps and a web trial.',
       inLanguage: ['zh-CN', 'en'],
+      publisher: { '@id': `${site}/#organization` },
     },
     {
       '@type': 'Organization',
       '@id': `${site}/#organization`,
       name: 'Sleepy',
-      // alternateName 显式绑定中文品牌:AI 引擎对"Sleepy=轻课表"建同一实体的去歧义锚
       alternateName: ['轻课表'],
       url: site,
-      // sameAs 多源:两应用仓 = 实体权威外链,E-E-A-T 信号 + GEO 实体归并
-      sameAs: [repoUrl, 'https://github.com/lingion/sleepy-ios'],
+      sameAs: [repoUrl, iosRepoUrl],
       logo: { '@type': 'ImageObject', url: `${site}/apple-touch-icon.png`, width: 180, height: 180 },
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': `${site}/#ios-app`,
+      name: 'Sleepy 轻课表 for iOS',
+      alternateName: ['Sleepy iOS', 'Sleepy 课程表 iOS'],
+      url: iosAppStoreUrl,
+      downloadUrl: iosAppStoreUrl,
+      operatingSystem: 'iOS',
+      applicationCategory: 'EducationalApplication',
+      description: lang === 'zh'
+        ? 'Sleepy 的 iOS 原生大学课程表，使用 SwiftUI 与 WidgetKit，独立发布；安装渠道、版本与功能以 App Store 或 TestFlight 说明为准。'
+        : 'The native Sleepy university timetable for iOS, built with SwiftUI and WidgetKit and released independently. Consult App Store or TestFlight for channel availability, versions and features.',
+      license: 'https://www.gnu.org/licenses/gpl-3.0.html',
+      sameAs: [iosRepoUrl, iosAppStoreUrl],
+      publisher: { '@id': `${site}/#organization` },
     },
   ],
 };
@@ -82,10 +101,12 @@ const siteGraph = {
     {/* 404(noindex)不声明 canonical——指向他页与免收录信号矛盾(spec §2.6-7) */}
     {!noindex && <link rel="canonical" href={site + path} />}
     {noindex && <meta name="robots" content="noindex" />}
-    {/* hreflang 恒指本页双语对(path/mirror 语义对),不再出现单页恒指 '/'(spec §2.6-2) */}
-    <link rel="alternate" hreflang="zh-CN" href={site + (lang === 'zh' ? path : mirror)} />
-    <link rel="alternate" hreflang="en" href={site + (lang === 'en' ? path : mirror)} />
-    <link rel="alternate" hreflang="x-default" href={site + '/'} />
+    {/* The language fallback is the same content in Chinese; error pages have no language alternatives. */}
+    {!noindex && <>
+      <link rel="alternate" hreflang="zh-CN" href={site + chinesePath} />
+      <link rel="alternate" hreflang="en" href={site + (lang === 'en' ? path : mirror)} />
+      <link rel="alternate" hreflang="x-default" href={site + chinesePath} />
+    </>}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Sleepy" />
     <meta property="og:title" content={title} />

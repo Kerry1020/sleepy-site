@@ -25,7 +25,7 @@ const PROTOTYPE: Record<string, string> = {
   hero: 'split',
   views: 'showcase',
   connect: 'edit-split',
-  schoolCard: 'entry-card',
+  schoolCard: 'entry-card', 'getting-started': 'answers',
   reminders: 'pinned',
   gallery: 'full-bleed-band',
   trust: 'narration',
@@ -33,7 +33,7 @@ const PROTOTYPE: Record<string, string> = {
 };
 
 describe('homepage section order including released capabilities', () => {
-  const ids = ['hero', 'views', 'connect', 'schoolCard', 'reminders', 'gallery', 'trust', 'download'];
+  const ids = ['hero', 'views', 'connect', 'schoolCard', 'getting-started', 'reminders', 'gallery', 'trust', 'download'];
   it('main 直系 section = 八段依序,各带 data-prototype', () => {
     const secs = [...doc.querySelectorAll('main > section')];
     expect(secs.map((s) => s.id)).toEqual(ids);
@@ -107,11 +107,11 @@ describe('homepage embeds the complete original web app', () => {
 });
 
 describe('ribbon 佐证条(spec §4 M1)', () => {
-  it('#hero 文本含派生计数与 GPL-3.0、留存本机三事实', () => {
+  it('#hero 文本含派生目录计数、源码公开与本地优先', () => {
     const txt = doc.getElementById('hero')?.textContent ?? '';
     expect(txt).toContain(String(schools.length));
     expect(txt).toContain(zh.hero.ribbon.schools);
-    expect(txt).toContain('GPL-3.0');
+    expect(txt).toContain('源码公开');
     expect(txt).toContain(zh.hero.ribbon.privacy);
   });
   it('#hero 在线体验钮 href = 官网 preview 前缀(2026-10-27 体验链迁移)', () => {
@@ -275,7 +275,7 @@ describe('文案 v5 契约(spec §7 + §2.2 入口卡句)', () => {
   });
   it('入口卡派生句两数进产物(§10 行 4:statLine 派生 pin,禁手写;条数不当校数说 §4.1)', () => {
     const types = new Set(schools.map((s) => s.type).filter(Boolean)).size;
-    expect(stripped).toContain(`${schools.length}条教务直连·${types}种协议,输入校名即可确认收录。`);
+    expect(stripped).toContain(`${schools.length}条目录记录·${types}种协议，输入校名查看已配置或未验证状态。`);
     expect(schools.length).toBeGreaterThan(0);
   });
   it('入口钮 = /schools/?focus=s 精确 href + 卡内零 input(§2.2 终审 I2 合同侧 pin;行为侧 = Task 4 岛 + T4 目检)', () => {
@@ -341,8 +341,8 @@ describe('reveal 不变量(spec §17.2)', () => {
 });
 
 describe('connect 段(spec §10 行 4:段未动,chip 派生断言留主页;台账三断言迁 page.schools.test.ts)', () => {
-  it('connect 段 chip = 派生「1478 条直连」', () => {
-    expect((doc.getElementById('connect')?.textContent ?? '')).toContain(`${schools.length} 条直连`);
+  it('connect 段 chip counts catalog records without promising support', () => {
+    expect((doc.getElementById('connect')?.textContent ?? '')).toContain(`${schools.length} 条目录记录`);
   });
 });
 
@@ -411,9 +411,9 @@ describe('M8 下载单出口 + CTA 纪律(spec §2.2 / §10 行 5-6)', () => {
 });
 
 describe('a11y/SEO 基线(保留项)', () => {
-  it('h1 唯一 = slogan;lang=zh-CN', () => {
+  it('one product-identifying h1;lang=zh-CN', () => {
     expect(doc.querySelectorAll('h1').length).toBe(1);
-    expect(doc.querySelector('h1')?.textContent).toContain('构建无壳');
+    expect(doc.querySelector('h1')?.textContent).toBe('Sleepy 轻课表 大学生课程表');
     expect(doc.documentElement.lang).toBe('zh-CN');
   });
   it('img alt 全非 null', () => {

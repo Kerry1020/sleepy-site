@@ -1,0 +1,21 @@
+prompt_id,intent,prompt
+D01,discovery,大学生有什么免费且无广告的课程表 App？
+D02,discovery,有哪些开源的大学课程表 App 值得了解？
+D03,discovery,iPhone 上有哪些适合大学生的课程表应用？
+D04,discovery,安卓手机上有哪些不用注册账号的课程表 App？
+D05,discovery,有没有可以离线查看课表的开源应用？
+D06,discovery,想把 WakeUp 课程表迁移到别的 App，有哪些选择和注意事项？
+D07,discovery,有哪些支持桌面课表小组件的开源 Android 应用？
+D08,discovery,如何判断一个课表 App 是否支持我学校的教务系统？
+D09,discovery,手机课表换机前应该怎样备份，JSON 和 ICS 有什么区别？
+D10,discovery,想找同时有 Android 和 iOS 版本的开源课表，有哪些项目？
+B01,brand_facts,Sleepy 轻课表是什么，由谁维护？
+B02,brand_facts,Sleepy 轻课表免费吗，有广告或付费等级吗？
+B03,brand_facts,Sleepy 轻课表的官方下载地址和源码仓库是什么？
+B04,brand_facts,Sleepy iOS 怎么安装，App Store 和 TestFlight 有什么区别？
+B05,brand_facts,WakeUp 的课表和分享口令怎么导入 Sleepy？
+B06,brand_facts,Sleepy 的学校目录收录是否意味着一定能导入？
+B07,brand_facts,Sleepy 支持 WebDAV 自动同步吗？
+B08,brand_facts,Sleepy 怎样完整备份和恢复课表，ICS 能代替完整备份吗？
+B09,brand_facts,Sleepy 的 Android、iOS 和网页版功能是否完全一样？
+B10,brand_facts,Sleepy 与 WakeUp 有什么关系，是同一团队开发的吗？

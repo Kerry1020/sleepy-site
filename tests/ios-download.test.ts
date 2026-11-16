@@ -24,8 +24,8 @@ describe('iOS installation channels', () => {
       expect(icon.getAttribute('src')).toBe('/badges/testflight.jpg');
       expect(icon.getAttribute('width')).toBe(icon.getAttribute('height'));
       expect(links[1].textContent).toContain('TestFlight');
-      expect(channels.textContent).toContain(page.startsWith('en/') ? 'outside mainland China' : '中国大陆以外');
-      expect(channels.textContent).toContain(page.startsWith('en/') ? 'under review' : '审核中');
+      expect(channels.textContent).toContain(page.startsWith('en/') ? 'depends on your region' : '所在地区');
+      expect(channels.textContent).toContain(page.startsWith('en/') ? 'open places' : '开放名额');
       expect(channels.textContent).not.toMatch(/唯一合法|only official release channel/);
     });
   }

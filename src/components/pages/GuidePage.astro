@@ -1,0 +1,87 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../PageHeader.astro';
+import DocumentNav from '../DocumentNav.astro';
+import { guides, guidePath, guideIndexPath, type Guide, type GuideLang } from '../../data/guides';
+import { site } from '../../i18n/ui';
+interface Props { guide: Guide; lang: GuideLang }
+const { guide, lang } = Astro.props;
+const copy = guide.copy[lang];
+const path = guidePath(guide.slug, lang);
+const mirror = guidePath(guide.slug, lang === 'zh' ? 'en' : 'zh');
+const url = site + path;
+const prefix = lang === 'zh' ? '' : '/en';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': `${url}#article`,
+  headline: copy.title,
+  description: copy.description,
+  inLanguage: lang === 'zh' ? 'zh-CN' : 'en',
+  datePublished: guide.reviewDate,
+  dateModified: guide.reviewDate,
+  mainEntityOfPage: url,
+  author: { '@type': 'Organization', '@id': `${site}/#organization`, name: 'Sleepy' },
+  publisher: { '@id': `${site}/#organization` },
+  citation: guide.sources.map((source) => source.href),
+};
+const nav = [
+  ...copy.sections.map((section) => ({ href: `#${section.id}`, label: section.title })),
+  { href: '#sources', label: lang === 'zh' ? '核验依据' : 'Sources' },
+];
+---
+<Base lang={lang} title={`${copy.title} · Sleepy`} description={copy.description} path={path} mirror={mirror} jsonLd={jsonLd}>
+  <article class="site-col document-page" aria-labelledby="guide-heading">
+    <PageHeader title={copy.title} description={copy.description} id="guide-heading">
+      <Fragment slot="meta">
+        <a href={guideIndexPath(lang)}>{lang === 'zh' ? '使用指南' : 'User guides'}</a>
+        <span>{guide.sourceVersion}</span>
+        <span>{lang === 'zh' ? '核验日期：' : 'Reviewed: '}<time datetime={guide.reviewDate}>{guide.reviewDate}</time></span>
+      </Fragment>
+    </PageHeader>
+    <div class="document-grid">
+      <DocumentNav label={lang === 'zh' ? '本页内容' : 'On this page'} links={nav} />
+      <div class="document-body">
+        <section class="document-callout" aria-label={lang === 'zh' ? '适用范围' : 'Scope'}><p>{copy.answer}</p></section>
+        {copy.sections.map((section) => (
+          <section aria-labelledby={section.id}>
+            <h2 id={section.id}>{section.title}</h2>
+            {section.paragraphs?.map((paragraph) => <p>{paragraph}</p>)}
+            {section.table && <div class="guide-table" role="region" aria-label={section.title} tabindex="0">
+              <table>
+                <thead><tr>{section.table.headers.map((header) => <th scope="col">{header}</th>)}</tr></thead>
+                <tbody>{section.table.rows.map((row) => <tr>{row.map((cell, index) => index === 0 ? <th scope="row">{cell}</th> : <td>{cell}</td>)}</tr>)}</tbody>
+              </table>
+            </div>}
+            {section.steps && <ol>{section.steps.map((step) => <li>{step}</li>)}</ol>}
+            {section.items && <ul>{section.items.map((item) => <li>{item}</li>)}</ul>}
+          </section>
+        ))}
+        <section aria-labelledby="sources">
+          <h2 id="sources">{lang === 'zh' ? '核验依据' : 'Sources'}</h2>
+          <p>{lang === 'zh'
+            ? '以下链接固定到本文核验的 Android 发布提交。功能随版本演进，更新后的应用请以实际界面和发布说明为准。'
+            : 'These links point to the immutable Android release commit reviewed for this guide. Features evolve; check your installed app and its release notes.'}</p>
+          <ul>{guide.sources.map((source) => <li><a href={source.href}>{source.label[lang]}</a></li>)}</ul>
+        </section>
+        <section aria-labelledby="related-guides">
+          <h2 id="related-guides">{lang === 'zh' ? '接下来' : 'Next steps'}</h2>
+          <ul>
+            {guides.filter((other) => other.slug !== guide.slug).map((other) => <li><a href={guidePath(other.slug, lang)}>{other.copy[lang].title}</a></li>)}
+            <li><a href={`${prefix}/download/`}>{lang === 'zh' ? '选择适合设备的下载渠道' : 'Choose a download for your device'}</a></li>
+            <li><a href={`${prefix}/faq/`}>{lang === 'zh' ? '查看常见问题' : 'Read the FAQ'}</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </article>
+</Base>
+<style>
+  .guide-table { overflow-x: auto; margin-block: calc(var(--site-unit) * 5); border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-medium); }
+  table { inline-size: 100%; border-collapse: collapse; min-inline-size: 30rem; text-align: start; }
+  th, td { padding: calc(var(--site-unit) * 4); vertical-align: top; line-height: 1.8; border-block-end: 1px solid var(--md-sys-color-outline-variant); }
+  thead { background: var(--md-sys-color-surface-container); }
+  th { font-weight: 600; }
+  tr:last-child :is(th, td) { border-block-end: 0; }
+  thead tr:last-child th { border-block-end: 1px solid var(--md-sys-color-outline-variant); }
+</style>

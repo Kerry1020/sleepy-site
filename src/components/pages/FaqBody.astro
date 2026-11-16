@@ -3,6 +3,7 @@
 import PageHeader from '../PageHeader.astro';
 import DocumentNav from '../DocumentNav.astro';
 import faq from '../../data/faq.json';
+import release from '../../data/release.json';
 import { qqGroup, repoUrl } from '../../i18n/ui';
 import type { SiteCopy } from '../../i18n/zh';
 
@@ -64,7 +65,10 @@ const zhUI = lang === 'zh';
     <div class="document-grid">
       <DocumentNav label={t.tocLabel} links={rendered.map(section => ({href: `#${section.id}`, label: section.name}))} />
       <div class="faq__body" id="faq-results">
-        <p class="faq__review t-body-small">{zhUI ? '问答保留其核对日期，最新版本的变化请查看' : 'For changes since the FAQ review date, see the'}{' '}<a href={zhUI ? '/releases/' : '/en/releases/'}>{zhUI ? '更新说明' : 'release notes'}</a>{zhUI ? '。' : '.'}</p>
+        <aside class="faq__review t-body-small" data-faq-scope>
+          <p>{zhUI ? `功能问答核对基线：Android ${faq.reviewedVersion}，核对日期 ${faq.updatedAt}。` : `Feature FAQ reviewed against Android ${faq.reviewedVersion} on ${faq.updatedAt}.`}</p>
+          <p>{zhUI ? `当前 Android 正式版：${release.tag}。` : `Current Android release: ${release.tag}.`} <a href={zhUI ? '/releases/' : '/en/releases/'}>{zhUI ? '查看最新更新说明' : 'Read the latest release notes'}</a> · <a href={zhUI ? '/guides/' : '/en/guides/'}>{zhUI ? '迁移与备份指南' : 'Migration and backup guides'}</a></p>
+        </aside>
         {rendered.map(section => <section class="faq__section" data-faq-section data-section={section.name} id={section.id}>
           <h2 class="t-title-large faq__section-title">{section.name}</h2>
           {section.items.map(item => <article class="faq__item" data-faq-item id={item.id}>

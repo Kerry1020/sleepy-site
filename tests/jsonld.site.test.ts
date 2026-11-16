@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { JSDOM } from 'jsdom';
-import { site, repoUrl } from '../src/i18n/ui';
+import { site, repoUrl, iosRepoUrl, iosAppStoreUrl } from '../src/i18n/ui';
 
 // SEO 极致批次 S3a:站级实体图(WebSite + Organization)铺全部可收录页,
 // 给品牌搜索/知识面板一个稳定锚点;404(noindex)豁免。
@@ -32,6 +32,26 @@ describe('站级 JSON-LD 图(WebSite + Organization)', () => {
       expect(org.alternateName).toContain('轻课表');
       expect(org.logo.url).toMatch(/apple-touch-icon\.png/);
       expect(org.logo.width).toBe(180);
+    });
+  }
+  for (const [p, lang] of [['index.html', 'zh'], ['en/index.html', 'en']] as const) {
+    it(`${p}: iOS is a separate app with its own channel and no inherited Android release`, () => {
+      const graph = siteGraph(p)['@graph'];
+      const ios = graph.find((node: any) => node['@id'] === `${site}/#ios-app`);
+      const website = graph.find((node: any) => node['@id'] === `${site}/#website`);
+      expect(ios['@type']).toBe('SoftwareApplication');
+      expect(ios.operatingSystem).toBe('iOS');
+      expect(ios.url).toBe(iosAppStoreUrl);
+      expect(ios.downloadUrl).toBe(iosAppStoreUrl);
+      expect(ios.sameAs).toEqual(expect.arrayContaining([iosRepoUrl, iosAppStoreUrl]));
+      expect(ios.softwareVersion).toBeUndefined();
+      expect(ios.softwareRequirements).toBeUndefined();
+      expect(ios.aggregateRating).toBeUndefined();
+      expect(ios.review).toBeUndefined();
+      expect(website.description).toContain(lang === 'zh' ? '轻课表官方网站' : 'official website');
+      expect(website.description).toContain('Android');
+      expect(website.description).toContain('iOS');
+      expect(ios.description).toContain(lang === 'zh' ? '独立发布' : 'independently');
     });
   }
   it('404(noindex)零 ld+json(免收录页不发实体)', () => {

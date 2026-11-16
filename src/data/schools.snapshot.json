@@ -1,8 +1,8 @@
 {
-  "ref": "v1.0.64",
-  "sourceSha": "77b878fd5c8903a3f201ea938b3b152de4c4fbc0",
+  "ref": "v1.0.65",
+  "sourceSha": "3a7cbed352f4f8e1144e2e532840b9bea93b25d3",
   "sourcePath": "app/src/main/assets/schools.json",
-  "releasedAt": "2026-11-09",
+  "releasedAt": "2026-11-15",
   "citySourcePath": "app/src/main/assets/school_cities.json",
   "provinceBySchool": {
     "三峡大学": "HB",

@@ -27,18 +27,28 @@ const entry = (pathname: string) => {
   return url.querySelector('lastmod')?.textContent ?? null;
 };
 
-const relDay = release.date.slice(0, 10); // 2026-10-25
-const faqDay = faq.updatedAt; // 2026-10-26
+const reviewDay = '2026-11-16';
 
-describe('sitemap lastmod 数据真值(SEO 极致批次)', () => {
-  for (const p of ['/', '/en/', '/schools/', '/en/schools/', '/download/', '/en/download/']) {
-    it(`${p} lastmod = release.date(${relDay})`, () => {
-      expect(entry(p)).toMatch(new RegExp(`^${relDay}`));
+describe('sitemap reflects release dates and genuine content reviews', () => {
+  for (const base of ['/', '/download/', '/faq/', '/guides/', '/guides/wakeup-migration/', '/guides/backup-restore/', '/privacy/']) {
+    for (const path of [base, '/en' + base]) {
+      it(`${path} includes the current editorial review date`, () => {
+        expect(entry(path)).toMatch(new RegExp(`^${reviewDay}`));
+      });
+    }
+  }
+  for (const path of ['/schools/', '/en/schools/', '/releases/', '/en/releases/']) {
+    it(`${path} uses the release pipeline timestamp`, () => {
+      expect(entry(path)).toBe(new Date(release.date).toISOString());
     });
   }
-  for (const p of ['/faq/', '/en/faq/']) {
-    it(`${p} lastmod = faq.updatedAt(${faqDay})`, () => {
-      expect(entry(p)).toMatch(new RegExp(`^${faqDay}`));
+  for (const path of ['/licenses/', '/en/licenses/']) {
+    it(`${path} does not borrow an unrelated release timestamp`, () => {
+      expect(entry(path)).toBeNull();
     });
   }
+  it('preserves the older feature FAQ review baseline separately', () => {
+    expect(faq.updatedAt).toBe('2026-11-10');
+    expect(faq.reviewedVersion).toBe('v1.0.64');
+  });
 });

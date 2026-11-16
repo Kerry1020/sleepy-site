@@ -217,10 +217,11 @@ describe('Footer.astro(v4 §4/§13 R1 再基线)', () => {
     expect(footer).not.toContain('Blob');
     expect(footer).not.toMatch(/variant=\{2\}|variant=2/);
   });
-  it('GPL 钉死 + QQ/sponsor 引用已清(v5 §10:Footer 瘦身,键留、消费方迁 /download/)', async () => {
+  it('公开源码入口 + QQ/sponsor 引用已清(v5 §10:Footer 瘦身,键留、消费方迁 /download/)', async () => {
     const { zh: zhCopy } = await import('../i18n/zh');
     expect(footer).toContain('{t.license}');
-    expect(zhCopy.footer.license).toContain('GPL');
+    expect(zhCopy.footer.license).toBe('源码公开');
+    expect(zhCopy.trust.licenseBody).toContain('第三方组件遵循各自许可');
     // ui.ts 键全部保留(qqGroup/sponsorUrl 仍由 Trust.astro 与 /download/ 消费)
     expect(ui).toContain('1063407652');
     expect(ui).toContain('https://github.com/lingion/sleepy/blob/main/sponsor.md');

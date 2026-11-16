@@ -203,9 +203,10 @@ export function assertSectionPairing(zhSecs, enSecs) {
 }
 
 // Missing translations fail before merging; never silently substitute Chinese on English pages.
-function mergeDocs(zhSecs, enSecs, updatedAt) {
+function mergeDocs(zhSecs, enSecs, updatedAt, reviewedVersion) {
   return {
     updatedAt,
+    reviewedVersion,
     sections: zhSecs.map((zs, i) => ({
       zh: zs.zh,
       en: enSecs[i]?.en ?? zs.zh,
@@ -233,7 +234,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     process.exit(1);
   }
   const updatedAt = zhMd.match(/(?:内容核对日期|更新时间)[：:]\s*(\d{4}-\d{2}-\d{2})/)?.[1] ?? ''; // 文件内声明优先(终审:写死用文件内声明)
-  const doc = mergeDocs(zhSecs, enSecs, updatedAt);
+  const reviewedVersion = zhMd.match(/产品基线为 Android (v[\d.]+)/)?.[1];
+  if (!reviewedVersion) throw new Error('FAQ must declare its reviewed Android version');
+  const doc = mergeDocs(zhSecs, enSecs, updatedAt, reviewedVersion);
   writeFileSync(OUT, `${JSON.stringify(doc, null, 2)}\n`);
   console.log(
     `[build-faq] faq.json: ${doc.sections.length} 节 · ${doc.sections.reduce((n, s) => n + s.items.length, 0)} 问 · updatedAt=${doc.updatedAt}`

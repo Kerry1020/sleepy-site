@@ -29,8 +29,8 @@
 ### 支持什么 Android 版本？
 最低 Android 8.0（API 26），target 和 compile SDK 为 37。正式包名是 `com.lingion.sleepy`，当前源码的 debug 包名是 `com.lingion.sleepy.debug`，数据分别保存。最低系统要求不代表所有图形效果和厂商实况通知都能在旧系统上工作。
 
-### 当前版本是多少？
-本页描述 v1.0.64，versionCode 为 10064。该正式版发布于 2026-11-09 UTC；已安装版本可在应用“关于”页查看。下载以 [v1.0.64 发布页](https://github.com/lingion/sleepy/releases/tag/v1.0.64)为准；之后的源码提交和 debug 包不自动算作此正式版已有功能。
+### 这份功能问答基于哪个版本核对？
+本页描述 v1.0.64，versionCode 为 10064。该正式版发布于 2026-11-09 UTC；已安装版本可在应用“关于”页查看。这份功能快照对应 [v1.0.64 发布页](https://github.com/lingion/sleepy/releases/tag/v1.0.64)。最新 Android 正式版请查看[官网下载页](https://sleepy.is-my.app/download/)与[更新说明](https://sleepy.is-my.app/releases/)；后续版本的能力应按各自说明核对。
 
 ### 提供哪些 APK ABI？
 正式发布提供四种 APK：

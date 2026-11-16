@@ -89,6 +89,9 @@ const ROUTES: { slug: string; file: string; zh: string; en: string; og?: string 
   { slug: 'faq', file: 'faq/', zh: '/faq/', en: '/en/faq/' },
   { slug: 'privacy', file: 'privacy/', zh: '/privacy/', en: '/en/privacy/', og: 'home' },
   { slug: 'licenses', file: 'licenses/', zh: '/licenses/', en: '/en/licenses/', og: 'home' },
+  { slug: 'guides', file: 'guides/', zh: '/guides/', en: '/en/guides/', og: 'home' },
+  { slug: 'wakeup-migration', file: 'guides/wakeup-migration/', zh: '/guides/wakeup-migration/', en: '/en/guides/wakeup-migration/', og: 'home' },
+  { slug: 'backup-restore', file: 'guides/backup-restore/', zh: '/guides/backup-restore/', en: '/en/guides/backup-restore/', og: 'home' },
 ]
 
 // 路由产物定位:en 前缀仅看语言(zh home file='' → root;en home → en/)
@@ -104,11 +107,11 @@ const routeDoc = (file: string, lang: 'zh' | 'en') => {
 describe('hreflang 矩阵(spec §2.6-2:8 路由各双指本页对)', () => {
   for (const r of ROUTES) {
     for (const lang of ['zh', 'en'] as const) {
-      it(`${r.slug} ${lang}:zh-CN/en 指本页对,x-default=/`, () => {
+      it(`${r.slug} ${lang}:zh-CN/en 指本页对,x-default 指同页中文版本`, () => {
         const head = routeDoc(r.file, lang).querySelector('head')!
         expect(head.querySelector('link[hreflang="zh-CN"]')!.getAttribute('href')).toBe(site + r.zh)
         expect(head.querySelector('link[hreflang="en"]')!.getAttribute('href')).toBe(site + r.en)
-        expect(head.querySelector('link[hreflang="x-default"]')!.getAttribute('href')).toBe(site + '/')
+        expect(head.querySelector('link[hreflang="x-default"]')!.getAttribute('href')).toBe(site + r.zh)
       })
     }
   }
@@ -146,7 +149,7 @@ describe('JSON-LD 页级图允许面(spec §2.6-3 + S3 系列修订)', () => {
     expect(ld.operatingSystem).toBe('Android')
     expect(ld.softwareVersion).toBe(release.tag)
     expect(ld.downloadUrl).toBe(universal.url)
-    expect(ld.license).toContain('GPL')
+    expect(ld.license).toBe(site + '/licenses/')
   })
   it('schools/download 四路由零页级 ld+json(en 主页/faq 双语由 jsonld.pages 锁)', () => {
     for (const [file, lang] of [['schools/', 'zh'], ['schools/', 'en'], ['download/', 'zh'], ['download/', 'en']] as const) {
@@ -216,6 +219,11 @@ describe('404 产物(spec §2.6-7)', () => {
     const txt = doc404().body.textContent ?? ''
     expect(txt).toContain('这个路径不在名录里')
     expect(doc404().querySelector('meta[name="robots"][content*="noindex"]')).not.toBeNull()
+  })
+  it('404 不参与 canonical 或语言替代页集', () => {
+    const head = doc404().querySelector('head')!
+    expect(head.querySelector('link[rel="canonical"]')).toBeNull()
+    expect(head.querySelectorAll('link[hreflang]')).toHaveLength(0)
   })
   it('404 页无 hero preload', () => {
     expect(doc404().querySelector('head link[rel="preload"][as="image"]')).toBeNull()
